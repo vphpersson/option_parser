@@ -1,0 +1,2 @@
+git+https://github.com/vphpersson/typed_argument_parser.git#egg=typed_argument_parser
+toml
