@@ -65,10 +65,13 @@ class OptionParser(TypedArgumentParser, ABC):
         return config
 
     def read_environment(self) -> dict[str, Any]:
+
+        env_prefix: str = f'{self.module_name.upper()}_'
+
         return {
-            key.removeprefix(self.module_name.upper()).lower(): value
+            key.removeprefix(env_prefix).lower(): value
             for key, value in os_environ.items()
-            if key.startswith(self.module_name.upper())
+            if key.startswith(env_prefix)
         }
 
     def parse_options(
