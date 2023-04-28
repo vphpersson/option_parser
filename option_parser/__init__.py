@@ -96,7 +96,7 @@ class OptionParser(TypedArgumentParser, ABC):
                 setattr(option_parser_namespace, key, value)
 
         if read_environment:
-            for key, value in self.read_environment():
+            for key, value in self.read_environment().items():
                 setattr(option_parser_namespace, key, value)
 
         return option_parser_namespace
