@@ -81,7 +81,7 @@ class OptionParser(TypedArgumentParser, ABC):
         read_environment: bool = True,
         parse_args_options: dict[str, Any] | None = None,
         read_config_options: dict[str, Any] | None = None,
-    ) -> Self:
+    ) -> 'OptionParser.Namespace':
 
         option_parser_namespace: OptionParser.Namespace
 
