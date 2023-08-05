@@ -1,12 +1,12 @@
 from logging import Logger, getLogger
-from typing import Final, Any
+from typing import Final, Any, Self
 from abc import ABC, abstractmethod
 from os import environ as os_environ
 from pathlib import Path
 from functools import cached_property
 
 from typed_argument_parser import TypedArgumentParser
-from toml import loads as toml_loads
+from tomllib import loads as toml_loads
 
 
 LOG: Final[Logger] = getLogger(__name__)
@@ -52,7 +52,7 @@ class OptionParser(TypedArgumentParser, ABC):
         config: dict[str, Any] = {}
 
         try:
-            config = toml_loads(s=path.read_text())
+            config = toml_loads(path.read_text())
         except FileNotFoundError as e:
             if raise_exception:
                 raise e
@@ -81,7 +81,7 @@ class OptionParser(TypedArgumentParser, ABC):
         read_environment: bool = True,
         parse_args_options: dict[str, Any] | None = None,
         read_config_options: dict[str, Any] | None = None,
-    ) -> 'OptionParser.Namespace':
+    ) -> Self:
 
         option_parser_namespace: OptionParser.Namespace
 
